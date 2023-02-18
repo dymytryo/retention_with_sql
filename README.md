@@ -280,15 +280,11 @@ Result of dbt-izing:
   <caption style = "font-size: 100%">SQL Output</caption>
   <tr>
     <th>merchant_id</th>
-    <th>January 23</th>
-    <th>February 23</th>
-    <th>March 23</th>
-    <th>April 23</th>
-    <th>May 23</th>
-    <th>June 23</th>
+    <th>join_date</th>
+    <th>churn_date</th>
   </tr>
   <tr>
-    <td>join_date</td>
+    <td>dfsddsf</td>
     <td>1,000,584</td>
     <td>1,048,854</td>
     <td>1,116,901</td>
@@ -297,7 +293,7 @@ Result of dbt-izing:
     <td>1,116,901</td>
   </tr>
   <tr>
-    <td>churn_date</td>
+    <td>dsgdgdse</td>
     <td>1,000,584</td>
     <td>1,048,854</td>
     <td>1,116,901</td>
