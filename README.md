@@ -220,28 +220,3 @@ FROM
 </table>
 
 USING dbt 
-```sql
-    join_churn_pairs
-AS ( -- give all adjacent pairs of join and subsequent churn 
-    SELECT 
-        *,
-        CASE WHEN last_join_date = join_date AND churn_date IS NULL THEN current_date ELSE churn_date END filled_churn_date -- current date if did not churn
-    FROM 
-            ( -- get joinment and respective churn date (if any)
-            SELECT 
-                j.entityId,
-                ch.join_date,
-                ch.churn_date,
-                max(j.join_date) OVER (PARTITION BY j.entityId) last_join_date                                   
-            FROM 
-                change_trail j -- join
-            LEFT JOIN -- not all have churned 
-                change_trail ch -- churns 
-                ON ch.entityId = j.entityId 
-                AND ch.record_end_row_number = j.row_number 
-            )
-        WHERE 
-            True
-            AND joindate IS NOT NULL -- remove redundant pairs from the left join  
-    ),
-```
