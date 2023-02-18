@@ -221,7 +221,7 @@ FROM
 
 USING dbt 
 
-![alt text](https://github.com/dymytryo/githubTest/blob/4769dda35a3e64b64dbf7c852e34701865e2c426/dbt_transition.png?raw=true)
+![alt text](https://github.com/dymytryo/githubTest/blob/d77cc97247fc3c8392b99d3ebbd025081ff05d25/dbt_modeling_flow.png?raw=true)
 
 Now we have the retention detail stored and we can query further with no issues 
 
