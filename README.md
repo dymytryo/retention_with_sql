@@ -5,14 +5,19 @@ Overview:
 The North Star Metric (NSM) is a concept in business strategy that refers to a single metric that captures the core value that a product or service delivers to its customers. It is the key performance indicator (KPI) that a company focuses on in order to measure its success and achieve its long-term goals.
 In the given project, I am trying to work through the complexity of measuring success of transitioning our subscribers from traditional payment methods like check into using a single use account (SUA). 
 
+---------
+To begin, we would want to know the total number of merchants that are entering and leaving the program in the given month. Additionally, we want to calculate what is the total number of merchants gettting paid using SUA in the beginning and the end of each month. 
 
-Extract from the table 
+We have a change log that is recording all the changes for all the fields in the datalake:
+* it is cumbersome because of the amount of data -> need to partition and add as many filters as possible 
+* it is missing the information that was done through a manual ETL directly into the database -> add UNIONS to mock those records
+
 | changeDate  | payerId | recordType |entityId | valCurr | valPrev |  
 | ------------------------------------|---| -----------------| --------------- |------------| ------------- |
 | timestamp '2012-10-31 01:00:00.000' | str 'payment_method' | str 'rid04XXXXXXXXXX'  | str 'eid04XXXXXXXXXX' | 12 | 6
 | timestamp '2012-10-31 01:00:00.000' | str 'subscription_type' | str 'rid01XXXXXXXXXX'  | str 'eid01XXXXXXXXXX' | 12 |11
 
-
+The query that we are going to use: 
 ```sql
 WITH 
     change_trail  
@@ -173,7 +178,7 @@ SELECT
 FROM 
     summary
 ```
-
+This will give us the following output: 
 <table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
   <caption style = "font-size: 100%">SQL Output</caption>
   <tr>
@@ -223,7 +228,7 @@ FROM
   </tr>
 </table>
 
-USING dbt 
+From here, we can vizualise the changes to be communicated to the stakeholders: 
 ![alt text](https://github.com/dymytryo/githubTest/blob/b95e10d6b101626e6a550a7825bacfe5b4f00848/churned_joined_merchants.png?raw=true)
 
 
