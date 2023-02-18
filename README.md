@@ -1,4 +1,4 @@
-# Demo
+# North Star Metric: Customer Retention Rate 
 
 This is the project!
 
@@ -136,6 +136,13 @@ SELECT
 FROM 
     summary
 ```
+
+After transposing the result:
+|Month|January 23|February 23| March 23| April 23| May 23|
+Beginning of the Month|	1,000,584 |	1,048,854 |	1,116,901| 1,159,974| 1,235,288|
+Churned	|				2,971	| 19,164 |	45,586 |	17,998	| 12,476|
+Joined 	|				61,310 |	87,076	|87,974 |	93,265	|53,605|
+End of the Month |		1,048,854	|1,116,901|	1,159,974	|1,235,288|	1,276,436|
 
 
 USING dbt 
