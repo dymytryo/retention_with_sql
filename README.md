@@ -231,8 +231,13 @@ This will give us the following output:
 From here, we can vizualise the changes to be communicated to the stakeholders: 
 ![alt text](https://github.com/dymytryo/githubTest/blob/b95e10d6b101626e6a550a7825bacfe5b4f00848/churned_joined_merchants.png?raw=true)
 
+In January and February we see an intake in the number of joined merchants to the program that was catalyzed by the successful outreach campaign. Nevertheless, the next month, we are seeing a huge drop mostly cause by those new merchants. Turns out, the outreach had flow and changing their payment method in the system for some of these merchant was wrongful.
 
-Next, we would want to measure the retention rates using a 90-day window period. Usually, this would not require a heavy lift for a one-time analysis, but we would like to have this displayed in the dashboard that will refresh monthly and would show the data for at least one year. 
+This is great, but how do we tie this to the revenue, cashflows, and overall initiative performance? We would want:
+* to see the changes by cohorts in a given month, so these random exegenous shocks would not affect our forecast;
+* to see the impact that it created on the bottom line with revenu; 
+--------------
+Hence , we would want to measure the retention rates using a 90-day window period. Usually, this would not require a heavy lift for a one-time analysis, but we would like to have this displayed in the dashboard that will refresh monthly and would show the data for at least one year. 
 
 Challenge: our serverless query server - Amazon Athena has a limitation on the data scanned of 100GB, which limits us usually to pulling data only for one period of a time. 
 Solution: dbt-tize the model and create marts-level tables with aggregated metrics to do the further analysis. 
@@ -322,8 +327,7 @@ Result of dbt-izing:
   </tr>
 </table>
 
-
-
+Using the given tables, we would wrap up cohorts and their respective TPV in arrays and maps and then perform the operations on those to get the rates of change and actual dollar value generated. 
 
 ```sql
 WITH 
@@ -400,6 +404,60 @@ WHERE
     True
 ```
 
+This will give us the following output: 
+<table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
+  <caption style = "font-size: 100%">SQL Output</caption>
+  <tr>
+    <th>Month</th>
+    <th>January 23</th>
+    <th>February 23</th>
+    <th>March 23</th>
+    <th>April 23</th>
+    <th>May 23</th>
+    <th>June 23</th>
+  </tr>
+  <tr>
+    <td>BOM</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+  </tr>
+  <tr>
+    <td>Joined</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+  </tr>
+  <tr>
+    <td>Churned</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+  </tr>
+   <tr>
+    <td>EOM</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+  </tr>
+</table>
+
+Next, vizualize the results to communicate findings to stakeholders: 
 ![alt text](https://github.com/dymytryo/githubTest/blob/4f54f857318544073df4a20d544234c54de339c4/retention_rates.png?raw=true)
+Here, based on a 3-month retention, we can see that we have a much higher retention for those merchants who are not getting paid frequently. They do not have to pay interchange rates and hence are not concerned with taking SUA as a payment method. 
+On the other hand, those merchants that received the payment three months ago and receive one today, have a higher rate of default. This is associated with additional costs associated with processing SUA, reconsiliation issues, etc. 
 
 ![alt text](https://github.com/dymytryo/githubTest/blob/4f54f857318544073df4a20d544234c54de339c4/transaction_volume_merchants.png?raw=true)
+Here we can see that the overall volume generated is not going down even though we know that our retention rates are not necessarily that high in the long run. The organge line shows the transactable merchants and the blue one shows the transacting vendors. This confirms that our acquisition efforts do increate the number of new vendors to generate more volume and reach the goals.
