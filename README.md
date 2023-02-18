@@ -17,25 +17,58 @@ AS ( -- all changes to the payment method involving payment method of interest -
         *,
         CASE WHEN is_join = True THEN row_number + 1 ELSE NULL END record_end_row_number   -- expected row number for the churn 
     FROM 
-        ( -- get all the changes that involve payment method 12 
-        SELECT DISTINCT 
-            c.entityId,
-            CASE WHEN c.valCurr  = '12' AND c.valPrev != '12' THEN c.changeDate     END join_date,
-            CASE WHEN c.valCurr  = '12' AND c.valPrev != '12' THEN True ELSE False  END is_join,  -- flag to signify join
-            CASE WHEN c.valCurr != '12' AND c.valPrev  = '12' THEN c.changeDate     END churn_date,
-            rank() OVER (PARTITION BY c.entityId ORDER BY c.changeDce)                  row_number -- since there are duplicates in the table 
+        (
+        SELECT DISTINCT  
+            *,
+            rank() OVER (PARTITION BY c.entityId ORDER BY c.changeDce) row_number -- rank since there are duplicates in the table
         FROM 
-            AWSDataCatalog.data_warehouse.changeTrail c
-        JOIN
-            AWSDataCatalog.data_warehouse.payer p
-            ON p.id = c.payorId  
-            AND p.channel_source IN (16, 26, 30) -- sources of the subscription
-        WHERE 
-            True
-            AND c.recordType = 'payment_method'
-            AND c.partitionId >= date '2017-06-15' 
-            AND regexp_like(entityId, 'eid0[1-4].{10}')
-        )
+            (
+                ( -- get all the changes that involve payment method 12 
+                SELECT  
+                    c.entityId,
+                    CASE WHEN c.valCurr  = '12' AND c.valPrev != '12' THEN c.changeDate     END join_date,
+                    CASE WHEN c.valCurr  = '12' AND c.valPrev != '12' THEN True ELSE False  END is_join,  -- flag to signify join
+                    CASE WHEN c.valCurr != '12' AND c.valPrev  = '12' THEN c.changeDate     END churn_date
+                FROM 
+                    AWSDataCatalog.data_warehouse.changeTrail c
+                JOIN
+                    AWSDataCatalog.data_warehouse.payer p
+                    ON p.id = c.payerId  
+                    AND p.channel_source IN (16, 26, 30) -- sources of the subscription
+                WHERE 
+                    True
+                    AND c.recordType = 'payment_method'
+                    AND c.partitionId >= date '2017-06-15' 
+                    AND regexp_like(entityId, 'eid0[1-4].{10}')
+                )
+                UNION
+                ( -- get the manual updates that are not recorded in change log
+                SELECT 
+                    merchant_id         entityId,
+                    date '2023-01-06'   join_date,
+                    True                is_join,
+                    NULL                churn_date
+                FROM 
+                    AWSDataCatalog.data_warehouse.dmytro_scratch_merchants_incident -- the manual ETL was done here 
+                WHERE 
+                    True 
+                )
+                UNION
+                ( -- get the manual updates from the payor side that are not recorded in change log
+                SELECT 
+                    m.id                entityId,
+                    NULL                join_date
+                    False               is_join,
+                    date '2019-06-06'   churn_date
+                 FROM
+                    AWSDataCatalog.data_warehouse.mercaht m
+                 JOIN
+                    AWSDataCatalog.data_warehouse.payer p 
+                    ON p.id = m.payerId 
+                    AND p.channel_source IN (16, 26, 30) -- sources of the subscription
+                    AND p.parent_payer_id IN ('rid04gfs54g5df48', 'rid02gfqw45ytudds') 
+                )
+             )
     ), 
     join_churn_pairs
 AS ( -- give all adjacent pairs of join and subsequent churn 
