@@ -137,14 +137,8 @@ FROM
     summary
 ```
 
-
-|Beginning of the Month|	1,000,584 |	1,048,854 |	1,116,901| 1,159,974| 1,235,288|
-|Churned	|				2,971	| 19,164 |	45,586 |	17,998	| 12,476|
-|Joined 	|				61,310 |	87,076	|87,974 |	93,265	|53,605|
-|End of the Month |		1,048,854	|1,116,901|	1,159,974	|1,235,288|	1,276,436|
-
 <table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
-  <caption style = "font-size: 110%">Null and Alternative Hypothesis Conditions</caption>
+  <caption style = "font-size: 100%">SQL Output</caption>
   <tr>
     <th>Month</th>
     <th>January 23</th>
@@ -152,22 +146,44 @@ FROM
     <th>March 23</th>
     <th>April 23</th>
     <th>May 23</th>
+    <th>June 23</th>
   </tr>
   <tr>
     <td>BOM</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+  </tr>
+  <tr>
     <td>Joined</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+  </tr>
+  <tr>
     <td>Churned</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+  </tr>
+   <tr>
     <td>EOM</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
   </tr>
-  <tr>
-    <td>$$\ge$$</td>
-    <td>$$<$$ </td>
-  </tr>
-  <tr>
-    <td>$$\le$$</td>
-    <td> $$>$$ </td>
-  </tr>
-  <tr>
 </table>
 
 USING dbt 
