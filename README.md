@@ -144,6 +144,26 @@ After transposing the result:
 |Joined 	|				61,310 |	87,076	|87,974 |	93,265	|53,605|
 |End of the Month |		1,048,854	|1,116,901|	1,159,974	|1,235,288|	1,276,436|
 
+<table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
+  <caption style = "font-size: 110%">Null and Alternative Hypothesis Conditions</caption>
+  <tr>
+    <th>$$H_0$$</th>
+    <th>$$H_a$$</th>
+  </tr>
+  <tr>
+    <td>$$=$$</td>
+    <td>$$\neq OR > OR < $$</td>
+  </tr>
+  <tr>
+    <td>$$\ge$$</td>
+    <td>$$<$$ </td>
+  </tr>
+  <tr>
+    <td>$$\le$$</td>
+    <td> $$>$$ </td>
+  </tr>
+  <tr>
+</table>
 
 USING dbt 
 ```sql
