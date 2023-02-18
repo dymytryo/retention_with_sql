@@ -99,7 +99,7 @@ AS ( -- calcualate ordinal number of the last day of a given month
         date_trunc('Month', full_date) Month,
         day_of_month(max(full_date)) day_number
     FROM 
-        AWSDataCatalog.fullDateInfo -- table built with Python in Glue job to give info about a given day 
+        AWSDataCatalog.glue.fullDateInfo -- table built with Python in Glue job to give info about a given day 
     WHERE 
         True 
         AND full_date >= date '2017-06-15'  
