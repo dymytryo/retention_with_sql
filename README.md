@@ -341,25 +341,25 @@ AS ( -- get all merchants that could receive a payment in a month M
     )
 SELECT 
     M Month,
-    -- get merchants that received a payment in M - 3 (three months ago) in M (month of interest)
+    -- get percentage of merchants that received a payment in M - 3 (three months ago) in M (month of interest)
     1e0*cardinality(array_intersect(map_keys(lag(transaction_volume_M, 3) OVER (ORDER BY M)),
                                     map_keys(transaction_volume_M))
     ) / cardinality(map_keys(lag(merchant_transaction_volume_M, 3) OVER (ORDER BY M))) "Retained Merchants in M from M-3",
-    -- get payors that sent a payment in M - 3 in M
+    -- get percentage of payors that sent a payment in M - 3 in M
     1e0*cardinality(array_intersect(lag(payors_M, 3) OVER (ORDER BY M),
                                     payors_M)
     )/cardinality(lag(payors_M, 3) OVER (ORDER BY M)) "Retained Payors in M from M-3",
-    -- get retained volume from transactions in M - 3 in M 
+    -- get percentage of retained volume from transactions in M - 3 in M 
     cardinality(map_values(map_filter(transaction_volume_M, (k, v) -> contains(
     array_intersect(map_keys(transaction_volume_M),
                     map_keys(lag(transaction_volume_M, 3) OVER (ORDER BY M)), k)))) "Retained Volume for TransactING Merchants in M from M-3",
-    -- sanity check: get retained volume from transactions in M - 3 in M 
+    -- sanity check: get percentage of retained volume from transactions in M - 3 in M 
     1e0*reduce(map_values(map_zip_with(transaction_volume_M,
                                        lag(transaction_volume_M, 3) OVER (ORDER BY M),
                                        (k, v1, v2) -> IF(v1 IS NULL OR v2 IS NULL, NULL, v1))), 0, (s, x) -> IF(x IS NULL, s, s + x), s -> s
     ) / reduce(map_values(lag(transaction_volume_M, 3) OVER (ORDER BY M)), 0, (s, x) -> IF(x IS NULL, s, s + x), s -> s) 
     "Retained Volume for TransactING Merchants in M from M-3",
-   -- get retained volume from transactable vendors in M - 3 in M 
+   -- get percentage of retained volume from transactable vendors in M - 3 in M 
    1e0*reduce(map_values(map_zip_with(transaction_volume_M,
                                       possible_transaction_volume_M,
                                       (k, v1, v2) -> IF(v2 IS NOT NULL, NULL, v1))), 0, (s, x) -> IF(x IS NULL, s, s + x), s -> s
