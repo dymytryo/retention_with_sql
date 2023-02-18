@@ -1,6 +1,10 @@
-# North Star Metric: Customer Retention Rate 
+# North Star Metric: Customer Transaction Volume Retention Rate 
 
-This is the project!
+Overview: 
+
+The North Star Metric (NSM) is a concept in business strategy that refers to a single metric that captures the core value that a product or service delivers to its customers. It is the key performance indicator (KPI) that a company focuses on in order to measure its success and achieve its long-term goals.
+In the given project, I am trying to work through the complexity of measuring success of transitioning our subscribers from traditional payment methods like check into using a single use account (SUA). 
+
 
 Extract from the table 
 | changeDate  | payerId | recordType |entityId | valCurr | valPrev |  
@@ -305,7 +309,16 @@ Result of dbt-izing:
 </table>
 
 
+
+
+Next, we would want to measure the retention rates using a 90-day window period. Usually, this would not require a heavy lift for a one-time analysis, but we would like to have this displayed in the dashboard that will refresh monthly and would show the data for at least one year. 
+
+Challenge: our serverless query server - Amazon Athena has a limitation on the data scanned of 100GB, which limits us usually to pulling data only for one period of a time. 
+Solution: dbt-tize the model and create marts-level tables with aggregated metrics to do the further analysis. 
+
 ![alt text](https://github.com/dymytryo/githubTest/blob/b95e10d6b101626e6a550a7825bacfe5b4f00848/churned_joined_merchants.png?raw=true)
+
+Now, we are able to get just the results of the query that we used before. Here, the table with retention data will be a full-fledged version of the CTE that we used before `join_churn_pairs`. 
 
 ```sql
 WITH 
