@@ -303,3 +303,6 @@ Result of dbt-izing:
   </tr>
   </tr>
 </table>
+
+
+![alt text](https://github.com/dymytryo/githubTest/blob/b95e10d6b101626e6a550a7825bacfe5b4f00848/churned_joined_merchants.png?raw=true)
