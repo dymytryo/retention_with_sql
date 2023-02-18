@@ -225,3 +225,85 @@ USING dbt
 
 Now we have the retention detail stored and we can query further with no issues 
 
+Result of dbt-izing: 
+<table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
+  <caption style = "font-size: 100%">SQL Output</caption>
+  <tr>
+    <th>Month</th>
+    <th>January 23</th>
+    <th>February 23</th>
+    <th>March 23</th>
+    <th>April 23</th>
+    <th>May 23</th>
+    <th>June 23</th>
+  </tr>
+  <tr>
+    <td>merchant_id</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+  </tr>
+  <tr>
+    <td>transaction_volume</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+  </tr>
+  <tr>
+    <td>dollar_volume</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+  </tr>
+   <tr>
+    <td>payment_method</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+  </tr>
+</table>
+
+
+<table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
+  <caption style = "font-size: 100%">SQL Output</caption>
+  <tr>
+    <th>merchant_id</th>
+    <th>January 23</th>
+    <th>February 23</th>
+    <th>March 23</th>
+    <th>April 23</th>
+    <th>May 23</th>
+    <th>June 23</th>
+  </tr>
+  <tr>
+    <td>join_date</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+  </tr>
+  <tr>
+    <td>churn_date</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+    <td>1,000,584</td>
+    <td>1,048,854</td>
+    <td>1,116,901</td>
+  </tr>
+  </tr>
+</table>
