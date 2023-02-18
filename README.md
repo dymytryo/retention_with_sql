@@ -138,7 +138,7 @@ FROM
 ```
 
 After transposing the result:
-|Month|January 23|February 23| March 23| April 23| May 23|
+|Month|3||  | |
 |Beginning of the Month|	1,000,584 |	1,048,854 |	1,116,901| 1,159,974| 1,235,288|
 |Churned	|				2,971	| 19,164 |	45,586 |	17,998	| 12,476|
 |Joined 	|				61,310 |	87,076	|87,974 |	93,265	|53,605|
@@ -147,8 +147,12 @@ After transposing the result:
 <table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
   <caption style = "font-size: 110%">Null and Alternative Hypothesis Conditions</caption>
   <tr>
-    <th>$$H_0$$</th>
-    <th>$$H_a$$</th>
+    <th>Month</th>
+    <th>January 23</th>
+    <th>February 23</th>
+    <th>March 23|</th>
+    <th>April 23</th>
+    <th>May 23</th>
   </tr>
   <tr>
     <td>$$=$$</td>
