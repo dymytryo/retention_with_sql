@@ -381,3 +381,7 @@ JOIN
 WHERE 
     True
 ```
+
+![alt text](https://github.com/dymytryo/githubTest/blob/4f54f857318544073df4a20d544234c54de339c4/retention_rates.png?raw=true)
+
+![alt text](https://github.com/dymytryo/githubTest/blob/4f54f857318544073df4a20d544234c54de339c4/transaction_volume_merchants.png?raw=true)
