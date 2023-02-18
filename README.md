@@ -110,12 +110,12 @@ AS ( -- calcualate ordinal number of the last day of a given month
     joined_vendors
 AS ( -- get all end of month payees that were transactable
     SELECT
-        date_trunc('Month', dd.full_date)   Month, 
+        date_trunc('Month', f.full_date)   Month, 
         count(DISTINCT entityId)            EOM
     FROM
         join_churn_pairs
     JOIN 
-        AWSDataCatalog.fullDateInfo f 
+        AWSDataCatalog.glue.fullDateInfo f 
         ON f.full_date >= date '2021-12-01' -- 1-month lookup from current year
         AND f.full_date < current_date 
         AND f.full_date >= date(join_date) 
