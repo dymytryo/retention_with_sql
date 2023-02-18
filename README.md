@@ -220,3 +220,4 @@ FROM
 </table>
 
 USING dbt 
+![alt text](https://github.com/dymytryo/githubTest/blob/4769dda35a3e64b64dbf7c852e34701865e2c426/dbt_transition.png?raw=true)
