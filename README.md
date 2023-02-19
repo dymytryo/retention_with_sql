@@ -218,13 +218,11 @@ This will give us the following output:
     <td><span style="color:red">12,584</span></td>
     <td><span style="color:red">12,584</span></td>
     <td><span style="color:red">12,584</span></td>
-    <td><span style="color:red">12,584</span></td>
   </tr>
    <tr>
     <td>EOM</td>
     <td>1,000,584</td>
     <td>1,048,854</td>
-    <td>1,116,901</td>
     <td>1,116,901</td>
   </tr>
 </table>
