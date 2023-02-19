@@ -1,5 +1,22 @@
 # North Star Metric: Customer Transaction Volume Retention Rate 
 
+<h2>Description</h2>
+Project consists of a simple PowerShell script that walks the user through "zeroing out" (wiping) any drives that are connected to the system. The utility allows you to select the target disk and choose the number of passes that are performed. The PowerShell script will configure a diskpart script file based on the user's selections and then launch Diskpart to perform the disk sanitization.
+<br />
+
+
+<h2>Languages and Utilities Used</h2>
+
+- <b>PowerShell</b> 
+- <b>Diskpart</b>
+
+<h2>Environments Used </h2>
+
+- <b>Windows 10</b> (21H2)
+
+<h2>Program walk-through:</h2>
+
+
 Overview: 
 
 The North Star Metric (NSM) is a concept in business strategy that refers to a single metric that captures the core value that a product or service delivers to its customers. It is the key performance indicator (KPI) that a company focuses on in order to measure its success and achieve its long-term goals.
