@@ -259,25 +259,19 @@ Result of modeling with dbt:
   </tr>
   <tr>
     <td>mid041fgaQfh5wetT4e54tCb5</td>
-    <td>mid031fgLIfRet5weGd54gte5</td>
-  </tr>
-  <tr>
     <td>625.25</td>
-    <td>156786.28</td>
-  </tr>
-  <tr>
     <td>2022-01-01</td>
-    <td>2022-12-01</td>
+    <td>1</td>
+    <td>12</td>
   </tr>
   <tr>
-    <td>1</td>
+    <td>mid031fgLIfRet5weGd54gte5</td>
+    <td>156786.28</td>
+    <td>2022-12-01</td>
     <td>16</td>
-  </tr>
-   <tr>
-    <td>payment_method</td>
-    <td>12</td>
     <td>1</td>
   </tr>
+
 </table>
 
 * SQL Output: **merchant_retention_record**
