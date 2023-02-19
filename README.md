@@ -230,26 +230,28 @@ This will give us the following output:
 From here, we can vizualise the changes to be communicated to the stakeholders: 
 ![alt text](https://github.com/dymytryo/githubTest/blob/b95e10d6b101626e6a550a7825bacfe5b4f00848/churned_joined_merchants.png?raw=true)
 
-In January and February we see an intake in the number of joined merchants to the program that was catalyzed by the successful outreach campaign. Nevertheless, the next month, we are seeing a huge drop mostly cause by those new merchants. Turns out, the outreach had flow and changing their payment method in the system for some of these merchant was wrongful.
+In January and February we see an intake in the number of joined merchants to the program that was catalyzed by the successful outreach campaign. Nevertheless, the next month, we are seeing a huge drop mostly cause by those new merchants. Turns out, the outreach had flaws and changing the payment method in the system for some of these merchant was wrongful.
 
 This is great, but how do we tie this to the revenue, cashflows, and overall initiative performance? We would want:
 * to see the changes by cohorts in a given month, so these random exegenous shocks would not affect our forecast;
-* to see the impact that it created on the bottom line with revenu; 
---------------
-Hence , we would want to measure the retention rates using a 90-day window period. Usually, this would not require a heavy lift for a one-time analysis, but we would like to have this displayed in the dashboard that will refresh monthly and would show the data for at least one year. 
+* to see the impact that it created on the bottom line with revenue;
+    
+<h3>Modeling with dbt to overcome data volume contstraints</h3>
+    
+Ideally, we would want to measure the retention rates using a 90-day window period. Usually, this would not require a heavy lift for a one-time analysis, but we would like to have this displayed in the dashboard that will refresh monthly and would show the data for at least one year. 
 
-Challenge: our serverless query server - Amazon Athena has a limitation on the data scanned of 100GB, which limits us usually to pulling data only for one period of a time. 
-Solution: dbt-tize the model and create marts-level tables with aggregated metrics to do the further analysis. 
+**Challenge**: serverless query engine - Amazon Athena - has a limitation on the data scanned of 100GB, which limits us usually to pulling data only for one period of a time. 
+**Solution**: dbt-tize the model and create marts-level tables with aggregated metrics to do the further analysis:
 ![alt text](https://github.com/dymytryo/githubTest/blob/d77cc97247fc3c8392b99d3ebbd025081ff05d25/dbt_modeling_flow.png?raw=true)
 
+As a result, we are able to get just the results of the query that we used before. Here, the table with retention data will be a full-fledged version of the CTE that we used before `join_churn_pairs`. 
 
-Now, we are able to get just the results of the query that we used before. Here, the table with retention data will be a full-fledged version of the CTE that we used before `join_churn_pairs`. 
-
-Now we have the retention detail stored and we can query further with no issues 
+Now we have the retention detail stored and we can query it directly without restrictions and worrying about the underlying built of previous CTE. This removes the dependency of more skilled analysts and can be distributed across the team for further analyses. 
 
 Result of dbt-izing: 
+
 <table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
-  <caption style = "font-size: 100%">SQL Output</caption>
+  <caption style = "font-size: 100%">SQL Output: **payment_detail_agg**</caption>
   <tr>
     <th>Month</th>
     <th>January 23</th>
@@ -299,7 +301,7 @@ Result of dbt-izing:
 
 
 <table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
-  <caption style = "font-size: 100%">SQL Output</caption>
+  <caption style = "font-size: 100%">SQL Output: **merchant_retention_record**</caption>
   <tr>
     <th>merchant_id</th>
     <th>join_date</th>
