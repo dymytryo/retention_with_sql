@@ -215,9 +215,9 @@ This will give us the following output:
   </tr>
   <tr>
     <td>Churned</td>
-    <td><span style="color:red">12,584</span></td>
-    <td><span style="color:red">12,584</span></td>
-    <td><span style="color:red">12,584</span></td>
+    <td> <span style="color:red">12,584</span> </td>
+    <td> <span style="color:red">12,584</span> </td>
+    <td> <span style="color:red">12,584</span> </td>
   </tr>
    <tr>
     <td>EOM</td>
