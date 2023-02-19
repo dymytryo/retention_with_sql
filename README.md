@@ -283,14 +283,12 @@ Result of modeling with dbt:
   </tr>
   <tr>
     <td>mid041fgaQfh5wetT4e54tCb5</td>
-    <td>mid031fgLIfRet5weGd54gte5</td>
-  </tr>
-  <tr>
     <td>2017-06-30</td>
-    <td>2023-04-04</td>
+    <td>2018-07-15</td>
   </tr>
   <tr>
-    <td>2018-07-15</td>
+    <td>mid031fgLIfRet5weGd54gte5</td>
+    <td>2023-04-04</td>
     <td>2023-12-01</td>
   </tr>
 </table>
