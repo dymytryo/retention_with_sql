@@ -247,53 +247,36 @@ As a result, we are able to get just the results of the query that we used befor
 
 Now we have the retention detail stored and we can query it directly without restrictions and worrying about the underlying built of previous CTE. This removes the dependency of more skilled analysts and can be distributed across the team for further analyses. 
 
-Result of dbt-izing: 
+Result of modeling with dbt: 
 * SQL Output: **payment_detail_agg**
 <table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
   <tr>
-    <th>Month</th>
-    <th>January 23</th>
-    <th>February 23</th>
-    <th>March 23</th>
-    <th>April 23</th>
-    <th>May 23</th>
-    <th>June 23</th>
+    <th>merchant_id</th>
+    <th>transaction_volume</th>
+    <th>month</th>
+    <th>transaction_count</th>
+    <th>payment_method</th>
   </tr>
   <tr>
-    <td>merchant_id</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
+    <td>mid041fgaQfh5wetT4e54tCb5</td>
+    <td>mid031fgLIfRet5weGd54gte5</td>
   </tr>
   <tr>
-    <td>transaction_volume</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
+    <td>625.25</td>
+    <td>156786.28</td>
   </tr>
   <tr>
-    <td>dollar_volume</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
+    <td>2022-01-01</td>
+    <td>2022-12-01</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>16</td>
   </tr>
    <tr>
     <td>payment_method</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
+    <td>12</td>
+    <td>1</td>
   </tr>
 </table>
 
@@ -305,23 +288,16 @@ Result of dbt-izing:
     <th>churn_date</th>
   </tr>
   <tr>
-    <td>dfsddsf</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
+    <td>mid041fgaQfh5wetT4e54tCb5</td>
+    <td>mid031fgLIfRet5weGd54gte5</td>
   </tr>
   <tr>
-    <td>dsgdgdse</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
+    <td>2017-06-30</td>
+    <td>2023-04-04</td>
   </tr>
+  <tr>
+    <td>2018-07-15</td>
+    <td>2023-12-01</td>
   </tr>
 </table>
 
@@ -337,6 +313,9 @@ AS ( -- get all merchants that received a payment in month M
         array_agg(DISTINCT payor_id) payors_M
     FROM 
         AWSDataCatalog.dbt_marts.payment_detail_agg 
+    WHERE 
+        True
+        AND payment_method = 12 -- SUA
     GROUP BY 
         1
     ),
