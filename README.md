@@ -392,12 +392,13 @@ This will give us the following output:
      <th>Volume from Transactable in M</th>
   </tr>
   <tr>
-    <td>2022-01-01</td>
+    <td>2017-01-01</td>
     <td>0.86</td>
     <td>0.69</td>
     <td>0.69</td>
     <td>0.89</td>
-    <td>1,048,854</td>
+    <td>48,854</td>
+    <td>56,795</td>
     <td>1,116,901.69</td>
     <td>1,566,435.29</td>
   </tr>
