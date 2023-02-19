@@ -25,8 +25,8 @@ We have a change log that is recording all the changes for all the fields in the
 Sample records from the changeLog table (truncated): 
 | changeDate  | payerId | recordType |entityId | valCurr | valPrev |  
 | ------------------------------------|---| -----------------| --------------- |------------| ------------- |
-| timestamp '2012-10-31 01:00:00.000' | str 'payment_method' | str 'rid04XXXXXXXXXX'  | str 'eid04XXXXXXXXXX' | 12 | 6
-| timestamp '2012-10-31 01:00:00.000' | str 'subscription_type' | str 'rid01XXXXXXXXXX'  | str 'eid01XXXXXXXXXX' | 12 |11
+| timestamp '2012-10-31 01:00:00.000' | string 'payment_method' | string 'rid04XXXXXXXXXX'  | string 'eid04XXXXXXXXXX' | string '12' | string '6'
+| timestamp '2012-10-31 01:00:00.000' | string 'subscription_type' | string 'rid01XXXXXXXXXX'  | string 'eid01XXXXXXXXXX' | string '12' | string '11'
 
 
 The query that we are going to use: 
@@ -405,8 +405,8 @@ This will give us the following output:
 
 Next, vizualize the results to communicate findings to stakeholders: 
 ![alt text](https://github.com/dymytryo/githubTest/blob/4f54f857318544073df4a20d544234c54de339c4/retention_rates.png?raw=true)
-Here, based on a 3-month retention, we can see that we have a much higher retention for those merchants who are not getting paid frequently. They do not have to pay interchange rates and hence are not concerned with taking SUA as a payment method. 
-On the other hand, those merchants that received the payment three months ago and receive one today, have a higher rate of default. This is associated with additional costs associated with processing SUA, reconsiliation issues, etc. 
+Here, based on a 3-month retention, we can see that we have a much higher retention for those merchants who are not getting paid frequently. They do not have to pay interchange rates and hence are not concerned with taking SUA as a payment method at a given cadence. 
+On the other hand, those merchants that received the payment three months ago and receive one today, have a higher rate of default to a previously used payment method. This is due tp additional costs associated with processing SUA, reconsiliation issues, etc. 
 
 ![alt text](https://github.com/dymytryo/githubTest/blob/4f54f857318544073df4a20d544234c54de339c4/transaction_volume_merchants.png?raw=true)
-Here we can see that the overall volume generated is not going down even though we know that our retention rates are not necessarily that high in the long run. The organge line shows the transactable merchants and the blue one shows the transacting vendors. This confirms that our acquisition efforts do increate the number of new vendors to generate more volume and reach the goals.
+Here, we can conclude that the overall volume generated is not going down even though we know that our retention rates are not necessarily that high in the long run. The organge line shows the transactable merchants and the blue line shows the transacting vendors. This confirms that our acquisition efforts to increase the number of new vendors to generate more volume and reach the goals.
