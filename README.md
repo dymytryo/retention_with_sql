@@ -204,26 +204,26 @@ This will give us the following output:
   <tr>
     <td>BOM</td>
     <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
+    <td>999,470</td>
+    <td>1,015,291</td>
   </tr>
   <tr>
     <td>Joined</td>
-    <td><span style="color:green">12,584</span></td>
-    <td><span style="color:green">12,584</span></td>
-    <td><span style="color:green">12,584</span></td>
+    <td>12,584</td>
+    <td>25,689</td>
+    <td>10,256</td>
   </tr>
   <tr>
     <td>Churned</td>
-    <td> <span style="color:red">12,584</span> </td>
-    <td> <span style="color:red">12,584</span> </td>
-    <td> <span style="color:red">12,584</span> </td>
+    <td>13,698</td>
+    <td>9,868</td>
+    <td>6,987</td>
   </tr>
    <tr>
     <td>EOM</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
+    <td>999,470</td>
+    <td>1,015,291</td>
+    <td>1,018,560</td>
   </tr>
 </table>
 
