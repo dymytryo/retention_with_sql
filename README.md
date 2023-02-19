@@ -194,7 +194,6 @@ FROM
 
 This will give us the following output: 
 <table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
-  <caption style = "font-size: 100%">SQL Output</caption>
   <tr>
     <th>Month</th>
     <th>January 2023</th>
@@ -249,9 +248,8 @@ As a result, we are able to get just the results of the query that we used befor
 Now we have the retention detail stored and we can query it directly without restrictions and worrying about the underlying built of previous CTE. This removes the dependency of more skilled analysts and can be distributed across the team for further analyses. 
 
 Result of dbt-izing: 
-
+* SQL Output: **payment_detail_agg**
 <table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
-  <caption style = "font-size: 100%">SQL Output: **payment_detail_agg**</caption>
   <tr>
     <th>Month</th>
     <th>January 23</th>
@@ -299,9 +297,8 @@ Result of dbt-izing:
   </tr>
 </table>
 
-
+* SQL Output: **merchant_retention_record**
 <table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
-  <caption style = "font-size: 100%">SQL Output: **merchant_retention_record**</caption>
   <tr>
     <th>merchant_id</th>
     <th>join_date</th>
