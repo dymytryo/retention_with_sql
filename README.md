@@ -1,38 +1,33 @@
-# North Star Metric: Customer Transaction Volume Retention Rate 
+# North Star Metric: Merchant Transaction Volume Retention Rate 
 
 <h2>Description</h2>
-Project consists of a simple PowerShell script that walks the user through "zeroing out" (wiping) any drives that are connected to the system. The utility allows you to select the target disk and choose the number of passes that are performed. The PowerShell script will configure a diskpart script file based on the user's selections and then launch Diskpart to perform the disk sanitization.
+The North Star Metric (NSM) is a concept in business strategy that refers to a single metric that captures the core value that a product or service delivers to its customers. It is the key performance indicator (KPI) that a company focuses on in order to measure its success and achieve its long-term goals.
+In the given project, I am trying to work through the complexity of measuring success of transitioning our subscribers from traditional payment methods like check into a single use account (SUA). 
 <br />
-
 
 <h2>Languages and Utilities Used</h2>
 
-- <b>PowerShell</b> 
-- <b>Diskpart</b>
+- <b>AWS Athena</b> using <b>Presto SQL</b> - querying 
+- <b>dbt</b> using <b>PostgreSQL</b> - modeling 
+- <AWS Quickisght> - visualizing 
+- <Lucid> - charting 
 
-<h2>Environments Used </h2>
+<h2>Project walk-through:</h2>
 
-- <b>Windows 10</b> (21H2)
+<h3>Finding totals for joined and churned merchants</h3>
 
-<h2>Program walk-through:</h2>
-
-
-Overview: 
-
-The North Star Metric (NSM) is a concept in business strategy that refers to a single metric that captures the core value that a product or service delivers to its customers. It is the key performance indicator (KPI) that a company focuses on in order to measure its success and achieve its long-term goals.
-In the given project, I am trying to work through the complexity of measuring success of transitioning our subscribers from traditional payment methods like check into using a single use account (SUA). 
-
----------
 To begin, we would want to know the total number of merchants that are entering and leaving the program in the given month. Additionally, we want to calculate what is the total number of merchants gettting paid using SUA in the beginning and the end of each month. 
 
 We have a change log that is recording all the changes for all the fields in the datalake:
-* it is cumbersome because of the amount of data -> need to partition and add as many filters as possible 
-* it is missing the information that was done through a manual ETL directly into the database -> add UNIONS to mock those records
+* it is cumbersome because of the amount of data -> need to partition and add as many filters as possible; 
+* it is missing the information that was done through a manual ETL directly into the database -> add UNIONS to mock those records;
 
+Sample records from the changeLog table (truncated): 
 | changeDate  | payerId | recordType |entityId | valCurr | valPrev |  
 | ------------------------------------|---| -----------------| --------------- |------------| ------------- |
 | timestamp '2012-10-31 01:00:00.000' | str 'payment_method' | str 'rid04XXXXXXXXXX'  | str 'eid04XXXXXXXXXX' | 12 | 6
 | timestamp '2012-10-31 01:00:00.000' | str 'subscription_type' | str 'rid01XXXXXXXXXX'  | str 'eid01XXXXXXXXXX' | 12 |11
+
 
 The query that we are going to use: 
 ```sql
@@ -185,7 +180,7 @@ AS ( -- add all metrics
         changes 
         USING (Month)
     )
-
+    
 SELECT 
     Month,
     BOM,
@@ -195,52 +190,41 @@ SELECT
 FROM 
     summary
 ```
+
+
 This will give us the following output: 
 <table style="text-align:center; width:30%; text-align:center;font-size: 100% ">
   <caption style = "font-size: 100%">SQL Output</caption>
   <tr>
     <th>Month</th>
-    <th>January 23</th>
-    <th>February 23</th>
-    <th>March 23</th>
-    <th>April 23</th>
-    <th>May 23</th>
-    <th>June 23</th>
+    <th>January 2023</th>
+    <th>February 2023</th>
+    <th>March 2023</th>
   </tr>
   <tr>
     <td>BOM</td>
     <td>1,000,584</td>
     <td>1,048,854</td>
     <td>1,116,901</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
   </tr>
   <tr>
     <td>Joined</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
+    <td><span style="color:green">12,584</span></td>
+    <td><span style="color:green">12,584</span></td>
+    <td><span style="color:green">12,584</span></td>
   </tr>
   <tr>
     <td>Churned</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
-    <td>1,116,901</td>
+    <td><span style="color:red">12,584</span></td>
+    <td><span style="color:red">12,584</span></td>
+    <td><span style="color:red">12,584</span></td>
+    <td><span style="color:red">12,584</span></td>
   </tr>
    <tr>
     <td>EOM</td>
     <td>1,000,584</td>
     <td>1,048,854</td>
     <td>1,116,901</td>
-    <td>1,000,584</td>
-    <td>1,048,854</td>
     <td>1,116,901</td>
   </tr>
 </table>
