@@ -1,20 +1,42 @@
-# North Star Metric: Merchant Transaction Volume Retention Rate 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+    </li>
+    <li>
+      <a href="#languages-and-utilities-used">Languages and Utilities Used</a>
+    </li>
+    <li>
+      <a href="#project-walk-through">Project Walk-through</a>
+      <ul>
+        <li><a href="#Finding-Totals-for-Acquired-and-Churned-Merchants">Finding Totals for Acquired and Churned Merchants</a></li>
+        <li><a href="#Modeling-With-dbt-to-Overcome-Data-Volume-Contstraints">Modeling With dbt to Overcome Data Volume Contstraints</a></li>
+        <li><a href="#Getting-Details-for-North-Star-Metric">Getting Details for North Star Metric</a></li>
+        <li><a href="#Dashboarding-and-Drawing-Sample-Conclusions ">Dashboarding and Drawing Sample Conclusions </a></li>
+      </ul>
+    </li>
+    </li>
+  </ol>
+</details>
 
-<h2>Description</h2>
-The North Star Metric (NSM) is a concept in business strategy that refers to a single metric that captures the core value that a product or service delivers to its customers. It is the key performance indicator (KPI) that a company focuses on in order to measure its success and achieve its long-term goals.
-In the given project, I am trying to work through the complexity of measuring success of transitioning our subscribers from traditional payment methods like check into a single use account (SUA). 
-<br />
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-<h2>Languages and Utilities Used</h2>
+The North Star Metric (`NSM`) is a concept in business strategy that refers to a single metric that captures the core value that a product or service delivers to its customers. It is the key performance indicator (`KPI`) that a company focuses on in order to measure its success and achieve its long-term goals.
+In the given project, I am trying to work through the complexity of measuring success of transitioning our subscribers from traditional payment methods like check into a single use account (`SUA`). 
+
+##Languages and Utilities Used
 
 - <b>AWS Athena</b> using <b>Presto SQL</b> - querying 
 - <b>dbt</b> using <b>PostgreSQL</b> - modeling 
 - <AWS Quickisght> - visualizing 
 - <Lucid> - charting 
 
-<h2>Project walk-through:</h2>
+##Project Walk-through
 
-<h3>Finding totals for joined and churned merchants</h3>
+###Finding Totals for Acquired and Churned Merchants
 
 To begin, we would want to know the total number of merchants that are entering and leaving the program in the given month. Additionally, we want to calculate what is the total number of merchants gettting paid using SUA in the beginning and the end of each month. 
 
@@ -235,7 +257,7 @@ This is great, but how do we tie this to the revenue, cashflows, and overall ini
 * to see the changes by cohorts in a given month, so these random exegenous shocks would not affect our forecast;
 * to see the impact that it created on the bottom line with revenue;
     
-<h3>Modeling with dbt to overcome data volume contstraints</h3>
+###Modeling With dbt to Overcome Data Volume Contstraints
     
 Ideally, we would want to measure the retention rates using a 90-day window period. Usually, this would not require a heavy lift for a one-time analysis, but we would like to have this displayed in the dashboard that will refresh monthly and would show the data for at least one year. 
 
@@ -293,7 +315,7 @@ Result of modeling with dbt:
   </tr>
 </table>
 
-<h3>Getting the details for our North Star metric</h3>
+###Getting Details for North Star Metric
     
 Using the given tables, we would wrap up cohorts and their respective TPV in arrays and maps and then perform the operations on those to get the rates of change and actual dollar value generated. 
 
@@ -404,6 +426,7 @@ This will give us the following output:
   </tr>
 </table>
 
+###Dashboarding and Drawing Sample Conclusions 
 Next, vizualize the results to communicate findings to stakeholders: 
 ![alt text](https://github.com/dymytryo/githubTest/blob/4f54f857318544073df4a20d544234c54de339c4/retention_rates.png?raw=true)
 Here, based on a 3-month retention, we can see that we have a much higher retention for those merchants who are not getting paid frequently. They do not have to pay interchange rates and hence are not concerned with taking SUA as a payment method at a given cadence. 
