@@ -27,16 +27,16 @@
 The North Star Metric (`NSM`) is a concept in business strategy that refers to a single metric that captures the core value that a product or service delivers to its customers. It is the key performance indicator (`KPI`) that a company focuses on in order to measure its success and achieve its long-term goals.
 In the given project, I am trying to work through the complexity of measuring success of transitioning our subscribers from traditional payment methods like check into a single use account (`SUA`). 
 
-##Languages and Utilities Used
+## Languages and Utilities Used
 
 - <b>AWS Athena</b> using <b>Presto SQL</b> - querying 
 - <b>dbt</b> using <b>PostgreSQL</b> - modeling 
 - <AWS Quickisght> - visualizing 
 - <Lucid> - charting 
 
-##Project Walk-through
+## Project Walk-through
 
-###Finding Totals for Acquired and Churned Merchants
+### Finding Totals for Acquired and Churned Merchants
 
 To begin, we would want to know the total number of merchants that are entering and leaving the program in the given month. Additionally, we want to calculate what is the total number of merchants gettting paid using SUA in the beginning and the end of each month. 
 
@@ -257,7 +257,7 @@ This is great, but how do we tie this to the revenue, cashflows, and overall ini
 * to see the changes by cohorts in a given month, so these random exegenous shocks would not affect our forecast;
 * to see the impact that it created on the bottom line with revenue;
     
-###Modeling With dbt to Overcome Data Volume Contstraints
+### Modeling With dbt to Overcome Data Volume Contstraints
     
 Ideally, we would want to measure the retention rates using a 90-day window period. Usually, this would not require a heavy lift for a one-time analysis, but we would like to have this displayed in the dashboard that will refresh monthly and would show the data for at least one year. 
 
@@ -426,7 +426,7 @@ This will give us the following output:
   </tr>
 </table>
 
-###Dashboarding and Drawing Sample Conclusions 
+### Dashboarding and Drawing Sample Conclusions 
 Next, vizualize the results to communicate findings to stakeholders: 
 ![alt text](https://github.com/dymytryo/githubTest/blob/4f54f857318544073df4a20d544234c54de339c4/retention_rates.png?raw=true)
 Here, based on a 3-month retention, we can see that we have a much higher retention for those merchants who are not getting paid frequently. They do not have to pay interchange rates and hence are not concerned with taking SUA as a payment method at a given cadence. 
