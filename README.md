@@ -29,10 +29,10 @@ In the given project, I am trying to work through the complexity of measuring su
 
 ## Languages and Utilities Used
 
-- <b>AWS Athena</b> using <b>Presto SQL</b> - querying 
-- <b>dbt</b> using <b>PostgreSQL</b> - modeling 
-- <AWS Quickisght> - visualizing 
-- <Lucid> - charting 
+- `AWS Athena` using `Presto SQL` - querying 
+- `dbt` using `PostgreSQL` - modeling 
+- `AWS Quickisght` - visualizing 
+- `Lucid` - charting 
 
 ## Project Walk-through
 
@@ -315,7 +315,7 @@ Result of modeling with dbt:
   </tr>
 </table>
 
-###Getting Details for North Star Metric
+### Getting Details for North Star Metric
     
 Using the given tables, we would wrap up cohorts and their respective TPV in arrays and maps and then perform the operations on those to get the rates of change and actual dollar value generated. 
 
